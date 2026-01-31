@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Meta tags untuk karakter dan responsive design -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fathur</title>
+    
+    <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chatbot.css" />
+    
+    <!-- Link ke font Google dan Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+    <!-- ===== TOGGLE BUTTON CHATBOT ===== -->
+    <!-- Tombol untuk membuka/menutup chatbot -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment"></i>
+    </div>
+
+    <!-- ===== KONTAINER CHATBOT ===== -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <!-- Header Chatbot -->
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <i class="fas fa-robot"></i>
+                <h3>Mr. Great Assistant</h3>
+            </div>
+            <!-- Kontrol Chatbot -->
+            <div class="chatbot-controls">
+                <!-- Tombol toggle suara AI -->
+                <button class="voice-toggle-btn" id="voiceToggleBtn" title="Aktif/Nonaktif Suara AI">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <!-- Tombol ganti jenis suara -->
+                <button class="voice-type-btn" id="voiceTypeBtn" title="Ganti Jenis Suara">
+                    <i class="fas fa-male"></i>
+                </button>
+                <!-- Tombol resize chat -->
+                <button class="resize-btn" id="resizeBtn" title="Ubah Ukuran Chat">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <!-- Tombol tutup chat -->
+                <button class="close-btn" id="closeBtn" title="Tutup Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Body Chatbot -->
+        <div class="chatbot-body" id="chatbotBody">
+            <!-- Area pesan chat -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Pesan awal dari bot -->
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Halo! Saya asisten virtual Mr. Great. Saya bisa membantu Anda dengan informasi tentang layanan fotografi, portfolio, atau menjawab pertanyaan seputar fotografi. Ada yang bisa saya bantu?</p>
+                    </div>
+                    <!-- Tombol aksi untuk pesan bot -->
+                    <div class="message-actions">
+                        <!-- Tombol Text-to-Speech untuk pesan ini -->
+                        <button class="tts-btn" data-text="Halo! Saya asisten virtual Mr. Great. Saya bisa membantu Anda dengan informasi tentang layanan fotografi, portfolio, atau menjawab pertanyaan seputar fotografi. Ada yang bisa saya bantu?">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input area untuk pengguna -->
+            <div class="chatbot-input">
+                <!-- Tombol input suara -->
+                <button class="voice-input-btn" id="voiceInputBtn" title="Input Suara">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <!-- Input text untuk mengetik pesan -->
+                <input 
+                    type="text" 
+                    id="userInput" 
+                    placeholder="Ketik pesan Anda di sini..."
+                    autocomplete="off"
+                />
+                <!-- Tombol kirim pesan -->
+                <button id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            
+            <!-- Status voice input dan info suara -->
+            <div class="voice-status">
+                <div class="voice-info">
+                    <i class="fas fa-microphone"></i>
+                    <span id="voiceStatusText">Voice input siap</span>
+                </div>
+                <div class="voice-type-info">
+                    <i class="fas fa-user" id="voiceTypeIcon"></i>
+                    <span id="voiceTypeText">Suara: Laki-laki</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Chatbot dengan tombol aksi cepat -->
+        <div class="chatbot-footer">
+            <div class="footer-controls">
+                <!-- Tombol untuk pertanyaan cepat tentang layanan -->
+                <button class="quick-action-btn" data-question="Apa saja layanan yang ditawarkan?">
+                    <i class="fas fa-camera"></i>
+                    <span>Layanan</span>
+                </button>
+                <!-- Tombol untuk pertanyaan cepat tentang harga -->
+                <button class="quick-action-btn" data-question="Berapa harga paket fotografi?">
+                    <i class="fas fa-tag"></i>
+                    <span>Harga</span>
+                </button>
+                <!-- Tombol untuk pertanyaan cepat tentang booking -->
+                <button class="quick-action-btn" data-question="Bagaimana cara booking sesi foto?">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Booking</span>
+                </button>
+            </div>
+            <!-- Credit AI yang digunakan -->
+            <small>Powered by Google Gemma 3 via OpenRouter AI</small>
+        </div>
+    </div>
+
+    <!-- ===== HEADER / HERO SECTION ===== -->
+<header class="hero">
+        <div class="hero-left">
+            <div class="logo">Mr. Great</div>
+            
+            <div class="hero-content">
+                <div class="social-vertical">
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <div class="text-wrapper">
+                    <span class="hero-tag">PROFESSIONAL PHOTOGRAPHER</span>
+                    <h1>CREATIVE <br /><span class="outline-text">PHOTOGRAPHY</span></h1>
+                    <p>
+                        Kami menangkap emosi dan cerita di balik setiap bidikan. 
+                        Mewujudkan visi visual Anda menjadi kenyataan yang abadi.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn">
+                            START PROJECT <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#portfolio" class="btn secondary">VIEW WORK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-img-container">
+                <img
+                    src="https://placehold.co/600x800/222/FFF?text=Hero+Portrait"
+                    alt="Model Photography"
+                    class="hero-img"
+                />
+                <div class="hero-experience">
+                    <span>Est. 2014</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about">
+        <div class="container about-container">
+            <!-- Area gambar profil dengan efek green shape -->
+            <div class="about-img-wrapper">
+                <div class="green-shape"></div>
+                <img
+                    src="https://placehold.co/500x600/333/FFF?text=Photographer+Profile"
+                    alt="Photographer"
+                />
+            </div>
+            <!-- Area teks tentang fotografer -->
+            <div class="about-text">
+                <span class="tag">ABOUT ME</span>
+                <h2>Hi, I'm Darrell a Passionate Photographer</h2>
+                <p>
+                    Saya adalah fotografer yang berbasis di Indonesia dengan pengalaman
+                    lebih dari 10 tahun. Saya percaya setiap gambar memiliki cerita yang
+                    unik.
+                </p>
+                <!-- Group tombol dan kontak -->
+                <div class="action-group">
+                    <a href="#contact" class="btn"
+                        >GET IN TOUCH <i class="fas fa-arrow-right"></i
+                    ></a>
+                    <div class="phone">
+                        <i class="fas fa-phone-alt"></i> +62 812 3456 7890
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <span class="tag-center">SERVICES</span>
+                <h2>My Photography Services</h2>
+            </div>
+
+            <!-- Grid layanan fotografi -->
+            <div class="services-grid">
+                <!-- Layanan 1: Fotografi Portrait -->
+                <div class="service-card">
+                    <i class="fas fa-portrait icon"></i>
+                    <h3>Portrait Photography</h3>
+                    <ul>
+                        <li>Lighting profesional</li>
+                        <li>High-end retouching</li>
+                    </ul>
+                </div>
+                <!-- Layanan 2: Fotografi Event -->
+                <div class="service-card dark">
+                    <i class="fas fa-masks-theater icon"></i>
+                    <h3>Event Photography</h3>
+                    <ul>
+                        <li>Wedding & Events</li>
+                        <li>Unlimited photos</li>
+                    </ul>
+                </div>
+                <!-- Layanan 3: Fotografi Commercial -->
+                <div class="service-card">
+                    <i class="fas fa-camera icon"></i>
+                    <h3>Commercial</h3>
+                    <ul>
+                        <li>Product photos</li>
+                        <li>Branding visual</li>
+                    </ul>
+                </div>
+                <!-- Layanan 4: Fotografi Travel & Landscape -->
+                <div class="service-card">
+                    <i class="fas fa-mountain icon"></i>
+                    <h3>Travel & Landscape</h3>
+                    <ul>
+                        <li>Nature shots</li>
+                        <li>Cityscapes</li>
+                    </ul>
+                </div>
+                <!-- Layanan 5: Photo Editing -->
+                <div class="service-card">
+                    <i class="fas fa-images icon"></i>
+                    <h3>Photo Editing</h3>
+                    <ul>
+                        <li>Color grading</li>
+                        <li>Restorasi foto</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PORTFOLIO / GALLERY SECTION ===== -->
+    <section class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <span class="tag-center">GALLERY</span>
+                <h2>My Portfolio</h2>
+            </div>
+            <!-- Grid portfolio/gallery -->
+            <div class="portfolio-grid">
+                <img
+                    src="https://placehold.co/400x300/222/FFF?text=Portfolio+1"
+                    alt="Portfolio 1"
+                />
+                <img
+                    src="https://placehold.co/400x300/333/FFF?text=Portfolio+2"
+                    alt="Portfolio 2"
+                />
+                <img
+                    src="https://placehold.co/400x300/444/FFF?text=Portfolio+3"
+                    alt="Portfolio 3"
+                />
+                <img
+                    src="https://placehold.co/400x300/555/FFF?text=Portfolio+4"
+                    alt="Portfolio 4"
+                />
+                <img
+                    src="https://placehold.co/400x300/666/FFF?text=Portfolio+5"
+                    alt="Portfolio 5"
+                />
+                <img
+                    src="https://placehold.co/400x300/777/FFF?text=Portfolio+6"
+                    alt="Portfolio 6"
+                />
+            </div>
+            <!-- Tombol load more -->
+            <div class="center-btn">
+                <a href="#" class="btn secondary"
+                    >LOAD MORE <i class="fas fa-redo"></i
+                ></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE SECTION ===== -->
+    <section class="why-choose">
+        <div class="container choose-container">
+            <!-- Area teks mengapa memilih -->
+            <div class="choose-text">
+                <span class="tag">WHY CHOOSE ME</span>
+                <h2>What Makes My Work Stand Out</h2>
+                <p>
+                    Dedikasi tinggi terhadap detail dan pencahayaan membuat setiap foto
+                    menjadi karya seni.
+                </p>
+                <!-- List fitur unggulan -->
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <h4>Creative Eye</h4>
+                            <p>Sudut pandang unik.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <div>
+                            <h4>Fast Delivery</h4>
+                            <p>Edit cepat & profesional.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tombol call-to-action -->
+                <a href="#contact" class="btn"
+                    >GET IN TOUCH <i class="fas fa-arrow-right"></i
+                ></a>
+            </div>
+            <!-- Area gambar dengan badge pengalaman -->
+            <div class="choose-img">
+                <img
+                    src="https://placehold.co/600x400/888/FFF?text=Working+Process"
+                    alt="Photographer Working"
+                />
+                <!-- Badge pengalaman 10 tahun -->
+                <div class="experience-badge">
+                    <strong>10</strong>
+                    <span>Years of<br />Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Link ke file JavaScript chatbot -->
+    <script src="chatbot.js"></script>
+</body>
+</html>

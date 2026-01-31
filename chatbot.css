@@ -1,0 +1,542 @@
+/* ===== CHATBOT STYLES ===== */
+
+/* ===== TOGGLE BUTTON CHATBOT ===== */
+/* Tombol toggle di pojok kanan bawah */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color); /* Warna hijau utama */
+  border-radius: 50%; /* Bentuk bulat */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000; /* Di atas semua elemen */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bayangan */
+  transition: all 0.3s ease; /* Animasi transisi */
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.1); /* Efek zoom saat hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Bayangan lebih besar */
+}
+
+.chatbot-toggle i {
+  font-size: 24px;
+  color: #000;
+}
+
+/* ===== KONTAINER CHATBOT ===== */
+.chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 380px;
+  height: 550px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Di bawah toggle button */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(120%); /* Awalnya tersembunyi di kanan */
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animasi slide */
+  border: 1px solid #e0e0e0;
+}
+
+/* Class aktif untuk menampilkan chatbot */
+.chatbot-container.active {
+  transform: translateX(0); /* Tampilkan chatbot */
+}
+
+/* Class untuk mode expanded (lebih besar) */
+.chatbot-container.expanded {
+  width: 550px;
+  height: 700px;
+  bottom: 30px;
+  right: 30px;
+}
+
+/* ===== HEADER CHATBOT ===== */
+.chatbot-header {
+  background-color: var(--dark-bg);
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-title i {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.chatbot-title h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Kontrol di header */
+.chatbot-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.chatbot-controls button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.chatbot-controls button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Style untuk tombol voice toggle aktif */
+.voice-toggle-btn.active {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+/* Style untuk tombol voice type (ganti jenis suara) */
+.voice-type-btn.active-female {
+  background-color: #ff6b9d; /* Warna pink untuk suara perempuan */
+  color: #fff;
+}
+
+.voice-type-btn.active-female i {
+  color: #fff;
+}
+
+/* ===== BODY CHATBOT ===== */
+.chatbot-body {
+  flex: 1; /* Mengisi sisa ruang */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Area pesan chat */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Scroll vertikal jika perlu */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ===== STYLE PESAN ===== */
+.message {
+  display: flex;
+  max-width: 85%; /* Maksimal 85% lebar */
+  animation: fadeIn 0.3s ease; /* Animasi muncul */
+  position: relative;
+}
+
+/* Animasi fade in untuk pesan */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pesan dari pengguna di kanan */
+.user-message {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* Pesan dari bot di kiri */
+.bot-message {
+  align-self: flex-start;
+}
+
+/* Konten pesan */
+.message-content {
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  font-size: 14px;
+  max-width: 100%;
+  word-wrap: break-word; /* Patah kata jika panjang */
+}
+
+/* Style untuk pesan pengguna */
+.user-message .message-content {
+  background-color: var(--primary-color);
+  color: #000;
+  border-bottom-right-radius: 5px; /* Sudut berbeda untuk bubble chat */
+}
+
+/* Style untuk pesan bot */
+.bot-message .message-content {
+  background-color: #f0f0f0;
+  color: #333;
+  border-bottom-left-radius: 5px; /* Sudut berbeda untuk bubble chat */
+}
+
+/* ===== TOMBOL AKSI PESAN ===== */
+/* Tombol aksi (TTS) di pesan */
+.message-actions {
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
+  opacity: 0; /* Awalnya tersembunyi */
+  transition: opacity 0.2s;
+}
+
+/* Tampilkan tombol aksi saat hover pesan */
+.message:hover .message-actions {
+  opacity: 1;
+}
+
+/* Tombol Text-to-Speech */
+.tts-btn {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.tts-btn:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Style saat TTS sedang aktif */
+.tts-btn.playing {
+  color: var(--primary-color);
+  animation: ttsPulse 1s infinite; /* Animasi berdenyut */
+}
+
+/* Animasi berdenyut untuk tombol TTS aktif */
+@keyframes ttsPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ===== INPUT AREA ===== */
+.chatbot-input {
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  gap: 10px;
+  background-color: #fafafa;
+  align-items: center;
+}
+
+/* Input text untuk mengetik */
+.chatbot-input input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chatbot-input input:focus {
+  border-color: var(--primary-color); /* Border hijau saat fokus */
+}
+
+/* Tombol input suara */
+.voice-input-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #ddd;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.voice-input-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Style saat sedang mendengarkan suara */
+.voice-input-btn.listening {
+  background-color: #4CAF50; /* Hijau saat aktif */
+  border-color: #4CAF50;
+  color: white;
+  animation: voicePulse 1.5s infinite; /* Animasi berdenyut */
+}
+
+/* Animasi berdenyut untuk input suara aktif */
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+/* Tombol kirim pesan */
+#sendButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  border: none;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+#sendButton:hover {
+  background-color: #aed125;
+  transform: scale(1.05);
+}
+
+#sendButton i {
+  font-size: 16px;
+}
+
+/* ===== STATUS VOICE INPUT ===== */
+.voice-status {
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-info, .voice-type-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.voice-info i, .voice-type-info i {
+  font-size: 10px;
+}
+
+/* Style aktif untuk status voice */
+.voice-status.active {
+  color: #4CAF50;
+}
+
+.voice-status.active i {
+  color: #4CAF50;
+}
+
+/* Style khusus untuk info jenis suara */
+.voice-type-info {
+  color: #666;
+}
+
+.voice-type-info i {
+  font-size: 12px;
+}
+
+/* ===== FOOTER CHATBOT ===== */
+.chatbot-footer {
+  padding: 15px 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Kontrol di footer */
+.footer-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+/* Tombol aksi cepat */
+.quick-action-btn {
+  flex: 1;
+  padding: 8px 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+  font-size: 11px;
+  min-height: 50px;
+}
+
+.quick-action-btn:hover {
+  border-color: var(--primary-color);
+  background-color: #f9f9f9;
+}
+
+.quick-action-btn i {
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+.chatbot-footer small {
+  font-size: 11px;
+  color: #666;
+  display: block;
+  text-align: center;
+}
+
+/* ===== TYPING INDICATOR ===== */
+/* Indikator sedang mengetik */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 16px;
+  background-color: #f0f0f0;
+  border-radius: 18px;
+  width: fit-content;
+  border-bottom-left-radius: 5px;
+}
+
+/* Titik-titik animasi typing */
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #999;
+  border-radius: 50%;
+  animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Animasi untuk titik typing */
+@keyframes typingAnimation {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== STYLING SCROLLBAR ===== */
+/* Styling scrollbar untuk area chat messages */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ===== ANIMASI NOTIFIKASI ===== */
+/* Animasi fade in dan out untuk notifikasi */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+/* ===== MEDIA QUERIES UNTUK RESPONSIVE CHATBOT ===== */
+@media (max-width: 768px) {
+  /* Chatbot lebih kecil di mobile */
+  .chatbot-container {
+    width: calc(100% - 40px);
+    max-width: 350px;
+    height: 500px;
+    right: 20px;
+    bottom: 90px;
+  }
+  
+  /* Mode expanded di mobile */
+  .chatbot-container.expanded {
+    width: calc(100% - 40px);
+    height: 70vh;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  /* Posisi toggle button di mobile */
+  .chatbot-toggle {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  /* Footer controls wrap di mobile */
+  .footer-controls {
+    flex-wrap: wrap;
+  }
+  
+  .quick-action-btn {
+    min-width: calc(33.333% - 10px);
+    margin-bottom: 5px;
+  }
+  
+  /* Voice status menjadi kolom di mobile */
+  .voice-status {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+}

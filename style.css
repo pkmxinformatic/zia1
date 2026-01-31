@@ -1,0 +1,551 @@
+/* ===== VARIABEL WARNA ===== */
+:root {
+  --primary-color: #c6e941; /* Warna utama hijau terang */
+  --dark-bg: #1f1f1f; /* Background gelap */
+  --darker-bg: #151515; /* Background lebih gelap */
+  --light-bg: #f5f5f5; /* Background terang */
+  --grey-bg: #9bafb9; /* Background abu-abu */
+  --text-color: #333; /* Warna teks utama */
+  --text-light: #eee; /* Warna teks terang */
+}
+
+/* ===== RESET CSS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Model box yang lebih mudah */
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Font utama */
+  line-height: 1.6; /* Tinggi baris yang nyaman dibaca */
+  color: var(--text-color); /* Warna teks dari variabel */
+  overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: 1100px; /* Lebar maksimum konten */
+  margin: 0 auto; /* Pusatkan konten */
+  padding: 0 20px; /* Padding kiri-kanan */
+}
+
+/* Style untuk tombol utama */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--primary-color);
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Animasi hover */
+}
+
+.btn:hover {
+  background-color: #aed125; /* Warna hover lebih gelap */
+}
+
+/* Style untuk tombol sekunder */
+.btn.secondary {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+}
+
+/* Style untuk tag/title kecil */
+.tag,
+.tag-center {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 2px;
+}
+
+.tag {
+  color: var(--text-light); /* Untuk background gelap */
+}
+
+.tag-center {
+  color: #555;
+  display: block;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto 15px auto;
+}
+
+/* Style untuk heading level 2 */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.hero-left {
+    flex: 1.2;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+}
+
+.hero-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Social Media Styling */
+.social-vertical {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    gap: 25px;
+    padding-top: 10px;
+}
+
+.social-vertical a {
+    text-decoration: none;
+    color: #888;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-vertical a:hover {
+    color: var(--primary-color);
+}
+
+/* Text Styling */
+.hero-tag {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.text-wrapper h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 0.9;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+}
+
+.outline-text {
+    -webkit-text-stroke: 1px #1a1a1a;
+    color: transparent;
+    font-style: italic;
+}
+
+.text-wrapper p {
+    max-width: 450px;
+    color: #666;
+    font-size: 1.05rem;
+    margin-bottom: 35px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Hero Right Side */
+.hero-right {
+    flex: 0.8;
+    background-color: #f0f0f0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-experience {
+    position: absolute;
+    bottom: 40px;
+    right: -20px;
+    background: var(--dark-bg);
+    color: var(--primary-color);
+    padding: 15px 30px;
+    transform: rotate(-90deg);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  padding: 100px 0;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Wrapper untuk gambar profil */
+.about-img-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.about-img-wrapper img {
+  width: 100%;
+  position: relative;
+  z-index: 2; /* Di atas green shape */
+}
+
+/* Shape hijau dekoratif */
+.green-shape {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--primary-color);
+  z-index: 1; /* Di bawah gambar */
+  opacity: 0.5; /* Transparan 50% */
+}
+
+/* Area teks about */
+.about-text {
+  flex: 1;
+}
+
+/* Group tombol dan telepon */
+.action-group {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+/* ===== SERVICES SECTION ===== */
+.services {
+  padding: 100px 0;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Grid untuk kartu layanan */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* Style untuk kartu layanan */
+.service-card {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px); /* Efek angkat saat hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Variasi dark untuk kartu */
+.service-card.dark {
+  background: var(--dark-bg);
+  color: #fff;
+}
+
+.service-card .icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.service-card.dark .icon {
+  color: var(--primary-color);
+}
+
+/* Style untuk list dalam kartu */
+.service-card ul {
+  list-style: none;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.service-card.dark ul {
+  color: #ccc;
+}
+
+/* Custom bullet untuk list */
+.service-card ul li::before {
+  content: "•";
+  color: var(--primary-color);
+  margin-right: 5px;
+}
+
+/* ===== PORTFOLIO SECTION ===== */
+.portfolio {
+  padding: 50px 0 100px 0;
+  background: #fff;
+  text-align: center;
+}
+
+/* Grid untuk portfolio images */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.portfolio-grid img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+/* Efek hover untuk gambar portfolio */
+.portfolio-grid img:hover {
+  filter: brightness(0.8); /* Gelapkan sedikit */
+  transform: scale(1.02); /* Perbesar sedikit */
+}
+
+/* Container untuk tombol tengah */
+.center-btn {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== WHY CHOOSE SECTION ===== */
+.why-choose {
+  background-color: var(--dark-bg);
+  color: #fff;
+  padding: 100px 0;
+}
+
+.choose-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.choose-text {
+  flex: 1;
+}
+
+/* Grid untuk fitur */
+.features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+/* Item fitur individual */
+.feature-item {
+  display: flex;
+  gap: 15px;
+}
+
+.feature-item i {
+  font-size: 1.5rem;
+  color: #888;
+  border: 1px solid #444;
+  padding: 10px;
+  height: fit-content;
+}
+
+/* Area gambar dengan badge pengalaman */
+.choose-img {
+  flex: 1;
+  position: relative;
+}
+
+.choose-img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Badge pengalaman 10 tahun */
+.experience-badge {
+  position: absolute;
+  bottom: 20px;
+  left: -20px;
+  background: var(--primary-color);
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.experience-badge strong {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.experience-badge span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* ===== STYLE UNTUK CHATBOT NOTIFICATION ===== */
+.chatbot-notification {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Style untuk tombol voice toggle aktif */
+.voice-toggle-btn.active i {
+  color: #000;
+}
+
+/* ===== MEDIA QUERIES UNTUK RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .text-wrapper h1 { font-size: 3.5rem; }
+}
+@media (max-width: 768px) {
+  /* Hero section menjadi kolom di mobile */
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  /* Logo di mobile */
+  .logo {
+    position: static;
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: -10px;
+  }
+
+  .hero-left {
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Hero content menjadi kolom */
+  .hero-content {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Ukuran judul lebih kecil di mobile */
+  .text-wrapper h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  /* Social media menjadi horizontal di mobile */
+  .social-vertical {
+    flex-direction: row;
+    margin-right: 0;
+    margin-bottom: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .social-vertical a {
+    transform: rotate(0deg); /* Tidak dirotasi di mobile */
+    font-size: 1.2rem;
+    margin: 0 10px;
+  }
+
+  /* Hero right di mobile */
+  .hero-right {
+    width: 100%;
+    height: 400px;
+    min-height: 300px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* About dan why choose menjadi kolom */
+  .about-container,
+  .choose-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Portfolio grid menjadi 1 kolom */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Features list menjadi 1 kolom */
+  .features-list {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  /* Experience badge dipusatkan di mobile */
+  .experience-badge {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30px;
+  }
+}
+@media (max-width: 768px) {
+    .hero { flex-direction: column; }
+    .hero-left { padding: 80px 30px 40px; order: 2; }
+    .hero-right { height: 450px; order: 1; }
+    .social-vertical { flex-direction: row; margin-right: 0; margin-bottom: 20px; }
+    .hero-content { flex-direction: column; align-items: center; text-align: center; }
+    .text-wrapper p { margin: 0 auto 30px; }
+    .hero-btns { justify-content: center; }
+    .logo { left: 50%; transform: translateX(-50%); top: 20px; }
+    .hero-experience { right: 10px; transform: rotate(0); }
+}
